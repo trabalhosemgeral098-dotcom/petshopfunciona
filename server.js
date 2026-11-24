@@ -7,13 +7,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const dns = require("dns");
 
-dns.lookup(process.env.HOST, (erro, endereco) => {
-    if (erro) {
-        console.log("ERRO DNS:", erro);
-    } else {
-        console.log("DNS RESOLVIDO:", endereco);
-    }
-});
+
 const app = express();
 
 app.set("trust proxy", 1)
@@ -31,7 +25,7 @@ const db = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     ssl: ssl,
-    waitforConnection: true,
+    waitForConnections: true,
     connectionLimit: 5,
     queueLimit: 0
 })
